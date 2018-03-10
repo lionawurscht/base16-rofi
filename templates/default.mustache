@@ -4,63 +4,86 @@
  * Copyright: Andrea Scarpino
  */
 * {
-    selected-normal-foreground:  @lightbg;
-    foreground:                  rgba ( {{base05-rgb-r}}, {{base05-rgb-g}}, {{base05-rgb-b}}, 100 % );
-    normal-foreground:           @foreground;
-    alternate-normal-background: @lightbg;
+    // Colors
     red:                         rgba ( {{base08-rgb-r}}, {{base08-rgb-g}}, {{base08-rgb-b}}, 100 % );
-    selected-urgent-foreground:  @background;
     blue:                        rgba ( {{base0D-rgb-r}}, {{base0D-rgb-g}}, {{base0D-rgb-b}}, 100 % );
-    urgent-foreground:           @red;
-    alternate-urgent-background: @lightbg;
-    active-foreground:           @blue;
+    transparent:                 rgba ( 0, 0, 0, 0% );
+
     lightbg:                     rgba ( {{base01-rgb-r}}, {{base01-rgb-g}}, {{base01-rgb-b}}, 100 % );
-    selected-active-foreground:  @background;
-    alternate-active-background: @lightbg;
-    background:                  rgba ( {{base00-rgb-r}}, {{base00-rgb-g}}, {{base00-rgb-b}}, 100 % );
-    alternate-normal-foreground: @foreground;
-    normal-background:           @background;
     lightfg:                     rgba ( {{base06-rgb-r}}, {{base06-rgb-g}}, {{base06-rgb-b}}, 100 % );
-    selected-normal-background:  @lightfg;
-    border-color:                @foreground;
-    spacing:                     2;
-    separatorcolor:              @foreground;
-    urgent-background:           @background;
-    selected-urgent-background:  @red;
-    alternate-urgent-foreground: @red;
     background-color:            rgba ( {{base00-rgb-r}}, {{base00-rgb-g}}, {{base00-rgb-b}}, 0 % );
-    alternate-active-foreground: @blue;
+
+    // Background
+    background:                  rgba ( {{base00-rgb-r}}, {{base00-rgb-g}}, {{base00-rgb-b}}, 100 % );
+
+    normal-background:           @transparent;
+    alternate-normal-background: @transparent;
+    selected-normal-background:  @lightfg;
+
+    urgent-background:           @transparent;
+    alternate-urgent-background: @urgent-background;
+    selected-urgent-background:  @red;
+
     active-background:           @background;
+    alternate-active-background: @active-background;
     selected-active-background:  @blue;
+
+    // Foreground
+    foreground:                  rgba ( {{base05-rgb-r}}, {{base05-rgb-g}}, {{base05-rgb-b}}, 100 % );
+
+    normal-foreground:           @foreground;
+    alternate-normal-foreground: @foreground;
+    selected-normal-foreground:  @lightbg;
+
+    urgent-foreground:           @red;
+    alternate-urgent-foreground: @red;
+    selected-urgent-foreground:  @background;
+
+    active-foreground:           @blue;
+    alternate-active-foreground: @blue;
+    selected-active-foreground:  @background;
+
+    
+    separatorcolor:              @foreground;
+    border-color:                @foreground;
+
+    spacing:                     2;
+    font:                        "Source Code Pro 13";
+
+    padding-boxes:               14px;
+
 }
 window {
-    background-color: @background;
-    border:           1;
-    padding:          5;
+    background-color: transparent;
+    border:           0;
+    padding:          0;
+    width: 100%;
+    height: 100%;
 }
 mainbox {
+    background-color: @background;
     border:  0;
-    padding: 0;
+    padding: 30% 20% 30% 20%;
 }
 message {
-    border:       1px dash 0px 0px ;
+    border:       0px;
     border-color: @separatorcolor;
-    padding:      1px ;
+    padding:      @padding-boxes ;
 }
 textbox {
     text-color: @foreground;
 }
 listview {
     fixed-height: 0;
-    border:       2px dash 0px 0px ;
-    border-color: @separatorcolor;
-    spacing:      2px ;
+    border:       20px solid 0px 0px;
+    border-color: @transparent;
+    spacing:      4px;
     scrollbar:    true;
     padding:      2px 0px 0px ;
 }
 element {
     border:  0;
-    padding: 1px ;
+    padding: @padding-boxes ;
 }
 element normal.normal {
     background-color: @normal-background;
@@ -120,8 +143,10 @@ button selected {
 inputbar {
     spacing:    0px;
     text-color: @normal-foreground;
-    padding:    1px ;
+    padding:    @padding-boxes ;
     children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+    border:       20px solid 0px 0px;
+    border-color: @transparent;
 }
 case-indicator {
     spacing:    0;
